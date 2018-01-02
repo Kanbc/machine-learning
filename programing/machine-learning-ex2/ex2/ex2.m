@@ -30,9 +30,6 @@ X = data(:, [1, 2]); y = data(:, 3);
 %  We start the exercise by first plotting the data to understand the 
 %  the problem we are working with.
 
-fprintf(['Plotting data with + indicating (y = 1) examples and o ' ...
-         'indicating (y = 0) examples.\n']);
-
 plotData(X, y);
 
 % Put some labels 
