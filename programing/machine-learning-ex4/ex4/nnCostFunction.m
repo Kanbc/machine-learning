@@ -62,10 +62,28 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Part 1:
+one_m = ones(m,1);
+X = [one_m X];
 
+z2 = X*Theta1';
+a2 = sigmoid(z2);
+a2 = [one_m a2];
 
+z3 = a2*Theta2';
+h = sigmoid(z3);
 
+ymat = zeros(m,num_labels);
+for i=1:m
+  ymat(i,y(i)) = 1;
+end
 
+left  = sum(sum((-ymat).*log(h)));
+right = sum(sum(-(1-ymat).*log(1-h)));
+J = J + (1/m)*(left + right); 
+
+costReg = (lambda/(2*m))*(sum(sum(Theta1(:,2:input_layer_size+1).^2)) + sum(sum(Theta2(:,2:hidden_layer_size+1).^2)))
+J = J + costReg
 
 
 
