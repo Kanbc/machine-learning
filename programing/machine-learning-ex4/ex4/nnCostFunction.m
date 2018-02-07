@@ -81,24 +81,32 @@ end
 left  = sum(sum((-ymat).*log(h)));
 right = sum(sum(-(1-ymat).*log(1-h)));
 J = J + (1/m)*(left + right); 
+% Part 3
+costReg = (lambda/(2*m))*(sum(sum(Theta1(:,2:input_layer_size+1).^2)) + sum(sum(Theta2(:,2:hidden_layer_size+1).^2)));
+J = J + costReg;
 
-costReg = (lambda/(2*m))*(sum(sum(Theta1(:,2:input_layer_size+1).^2)) + sum(sum(Theta2(:,2:hidden_layer_size+1).^2)))
-J = J + costReg
+% Part 2
+delta3 = h-ymat;
+delta2 = delta3*Theta2;
+delta2 = delta2(:,2:end).*sigmoidGradient(z2);
 
+Del2 = (delta3')*a2;
+Del1 = (delta2')*X;
 
+Theta1_grad = Theta1_grad + (1/m)*Del1;
+Theta2_grad = Theta2_grad + (1/m)*Del2;
 
+% Part 3
+gradReg1 = zeros(size(Theta1));
+gradReg1 = gradReg1 + (lambda/m)*Theta1;
+gradReg1(:,1) = 0;
 
+gradReg2 = zeros(size(Theta2));
+gradReg2 = gradReg2 + (lambda/m)*Theta2;
+gradReg2(:,1) = 0;
 
-
-
-
-
-
-
-
-
-
-% -------------------------------------------------------------
+Theta1_grad = Theta1_grad + gradReg1; 
+Theta2_grad = Theta2_grad + gradReg2;
 
 % =========================================================================
 
