@@ -84,6 +84,7 @@ pause;
 %  Train linear regression with lambda = 0
 lambda = 0;
 [theta] = trainLinearReg([ones(m, 1) X], y, lambda);
+fprintf(['theta = %f'], theta);
 
 %  Plot fit over the data
 plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);

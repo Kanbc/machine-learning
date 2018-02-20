@@ -53,10 +53,10 @@ error_val   = zeros(m, 1);
 %
 
 % ---------------------- Sample Solution ----------------------
-ones_X = ones(m,1);
-X = [ones_X X];
-ones_Xval = ones(m2,1);
-Xval = [ones_Xval Xval];
+% ones_X = ones(m,1);
+% X = [ones_X X];
+% ones_Xval = ones(m2,1);
+% Xval = [ones_Xval Xval];
 
 for i=1:m
     theta_min = trainLinearReg(X(1:i,:), y(1:i,:), lambda);
